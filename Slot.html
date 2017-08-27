@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+    <div id='test'> 
+        <h1>parent</h1>
+        <my-component>
+            <p>initial</p>
+            <p>more</p>
+        </my-component>
+    </div>
+    <div id='test2'>
+        <app-layout>
+            <h1 slot="header">title</h1>
+            <p>pragarph</p>
+            <p>another</p>
+            <p slot = "footer">footer</p>
+<!--             <template scope="props">
+                <span>hello form parent's slot</span>
+                <span>{{ props.text }}</span>
+            </template> -->
+         </app-layout>
+    </div>
+    <div id="test3">
+        <my-awesome-list :items="items">
+            <template slot="item" scope="props">
+                <li class="my-fancy-item">{{ props.text }}</li>
+            </template>
+        </my-awesome-list>
+    </div>
+    <script type="text/javascript">
+        Vue.component('my-component', {
+            template:`
+                    <div>
+                        <h2>Child</h2>
+                        <slot>change</slot>
+                    </div>
+                    `
+                    // 只有当</my-component>中没有内容要分发，<slot>中的内容才会显示
+                    // 如果子组件模版中没有一个slot 的话，父组件的内容将会被丢弃
+        })
+        new Vue({
+            el: '#test'
+        })
+        Vue.component('app-layout', {
+            template:`
+                        <div class = "container">
+                            <header>
+                                <slot name="header"></slot>
+                            </header>
+                            <main>
+                                <slot></slot>
+                            </main>
+                            <footer>
+                                <slot name="footer"></slot>
+                            </footer>
+                        </div>
+                        `,
+            props: ['text']
+        })
+        new Vue({
+            el: '#test2',
+            data: {
+                text:''
+            }
+        })
+        Vue.component('my-awesome-list', {
+            template:`
+                        <ul>
+                            <slot name="item"
+                                v-for="item in items"
+                                :text="item.text">
+                                <!-- 这里写入备用内容-->
+                            </slot>
+                        </ul>
+                        `,
+            props: ['items'],
+        })
+        new Vue({
+            el: '#test3',
+            data: {
+                items: [1,2,3,4,5]
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>vue起步</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <form id="form">
+        <input type="checkbox" id="jack" value="jack" v-model="checkedNames">
+        <label for="jack">jack</label>
+        <input type="checkbox" id="john" value="john" v-model="checkedNames">
+        <label for="jack">john</label>
+        <input type="checkbox" id="Mike" value="Mike" v-model="checkedNames">
+        <label for="jack">mike</label>
+        <br>
+        <span>Cheked names: {{ checkedNames }}</span>
+        <br>
+         <input type="radio" id="one" value="One" v-model="picked">
+          <label for="one">One</label>
+          <br>
+          <input type="radio" id="two" value="Two" v-model="picked">
+          <label for="two">Two</label>
+          <br>
+          <span>Picked: {{ picked }}</span>
+          <br>
+          <select v-model="selected">
+            <option disabled value="">请选择</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+          </select>
+          <span>Selected: {{ selected }}</span>
+          <br>
+              <select v-model="selecteMore" multiple style="width: 50px">
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+              </select>
+              <br>
+              <span>Selected: {{ selecteMore }}</span>
+              <br>
+              <select v-model="selecteActive">
+              <option v-for="option in options" :value="option.value">
+                {{ option.text }}
+              </option>
+            </select>
+            <span>SelecteActive: {{ selecteActive }}</span>
+    </form>
+    <script type="text/javascript">
+        var form1 = new Vue({
+            el: '#form',
+            data: {
+                checkedNames: [],
+                picked: '',
+                selected: '',
+                selecteMore: [],
+                selecteActive: '',
+                options: [
+                      { text: 'One', value: 'A' },
+                      { text: 'Two', value: 'B' },
+                      { text: 'Three', value: 'C' }
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

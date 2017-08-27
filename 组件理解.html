@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>组件理解</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src= "vue.js"></script>
+</head>
+<body>
+    <div id="example-2">
+            {{ normalizedSize }}
+            <p>"没有绑定bind"</p>
+            <child  :message="1+1" ></child>
+            <p>"绑定bind"</p>
+            <child :message="1+1" size="fsjdklfjsdlJLKJLKJl"></child>\
+            <button>change</button>
+            <!-- <child  size="sdjflKJLKJL"></child> -->
+    </div>
+    <script type="text/javascript">
+            Vue.component('child', {
+            props: {
+                message: {
+                    type:String,
+                    required: true,
+            },
+                size: {
+                    type: String,
+                },
+            },
+            data: function () {
+                return {counter : this.message = 5}
+            },
+            computed: {
+                normalizedSize: function () {
+                    return this.size.toLowerCase();
+                }
+            },
+            template:  '<p><span> {{ message }}</span><span>{{ size }}</span><span>{{ normalizedSize }}</span></p> '
+                                
+        });
+        new Vue({
+            el: '#example-2',
+            data: {
+                bar: '133'
+            }
+        });
+
+    </script>
+</body>
+</html>
