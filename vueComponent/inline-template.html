@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
+    <style media="screen">
+      body {
+        padding-top: 40px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container" id="root">
+      <progerss-view inline-template>
+        <div class="">
+          <h1>Your Progress Through This Course Is {{ completerate}}</h1>
+          <p><button @click="completerate += 10">Update</button></p>
+        </div>
+      </progress-view>
+    </div>
+    <script src="https://unpkg.com/vue@2.1.3/dist/vue.js">
+    </script>
+    <script type="text/javascript" src="./modal.js">
+
+    </script>
+  </body>
+</html>
